@@ -18,7 +18,7 @@
 <script>
 $(function() {
 	$("#main").click(function() {
-		location.href="${context}/global/main";
+		location.href="${context}/global/Main";
 	});
 });
 </script>
