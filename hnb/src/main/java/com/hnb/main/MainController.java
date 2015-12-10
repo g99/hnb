@@ -31,7 +31,7 @@ public class MainController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "global/Main.tiles"; // dispatcher와 response.getWriter().print()를 포함
+		return "global/default.tiles"; // dispatcher와 response.getWriter().print()를 포함
 					   // home은 경로를 의미함
 	}
 }

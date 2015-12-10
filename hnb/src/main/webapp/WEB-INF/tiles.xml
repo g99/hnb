@@ -8,9 +8,18 @@
     <put-attribute name="content" value="" />
     <put-attribute name="footer" value="/WEB-INF/views/global/footer.jsp" />
   </definition>
+  
   <!-- 객체화 함으로써 상속이 가능해짐 -->
   <definition name="*/*.tiles" extends="layout">
   	<put-attribute name="header" value="/WEB-INF/views/global/header.jsp" />
     <put-attribute name="content" value="/WEB-INF/views/{1}/{2}.jsp" />
+  </definition>
+  
+  <!-- 해더가 없이 콘텐츠만 넣을 레이아웃을 만듦 -->
+  <definition name="noTiles" template="/WEB-INF/views/noTemplate.jsp">
+  	<put-attribute name="noTemplate" value="" />
+  </definition>
+  <definition name="*/*.jsp" extends="noTiles">
+  	<put-attribute name="noTemplate" value="/WEB-INF/views/{1}/{2}.jsp" />
   </definition>
 </tiles-definitions>

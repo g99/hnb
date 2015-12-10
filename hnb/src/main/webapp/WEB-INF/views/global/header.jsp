@@ -1,10 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 	
 	<div>
 	<div id="frm_toggle">
@@ -70,10 +64,15 @@
             </div>
             <!-- /.navbar-collapse -->
     </nav>
-<script src="${context}/resources/js/global.js"></script>  
-<script src="${context}/resources/js/jquery.js"></script>
-<script src="${context}/resources/js/bootstrap.js"></script>
-<script src="${context}/resources/js/bootstrap.min.js"></script>
+<script src="${js}/global.js"></script>  
+<script src="${js}/movie.js"></script>  
+<script src="${js}/member.js"></script>  
+<script src="${js}/ticket.js"></script>  
+<script src="${js}/admin.js"></script>  
+<script src="${js}/bom.js"></script>  
+<script src="${js}/jquery.js"></script>
+<script src="${js}/bootstrap.js"></script>
+<script src="${js}/bootstrap.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$(window).on("popstate", function(event) {

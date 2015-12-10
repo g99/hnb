@@ -28,7 +28,7 @@ public class MovieController {
 	// 그 외의 경우(ajax)는 이벤트를 전송한 경로에 다시 전송해준다. 
 	public String home() { 
 		logger.info("MovieController-home() 진입");
-		return "movie/Movie.tiles";
+		return "movie/Movie.jsp";
 	}
 	
 	@RequestMapping("/movie_info")
@@ -66,7 +66,7 @@ public class MovieController {
 		return model;
 	}
 	
-	@RequestMapping("/movie_tra")
+	@RequestMapping("/movie_Tra")
 	public Model movieTra(Model model, String filmNumber) {
 		logger.info("MovieController-movieTra() 진입");
 		logger.info("영화 아이디 {}",filmNumber);
@@ -78,7 +78,7 @@ public class MovieController {
 		return model;
 	}
 	
-	@RequestMapping("/movie_basic")
+	@RequestMapping("/movie_Basic")
 	public @ResponseBody MovieVO movieBasic(String filmNumber) {
 		logger.info("MovieController-movieBasic() 진입");
 		logger.info("영화 아이디 {}",filmNumber);

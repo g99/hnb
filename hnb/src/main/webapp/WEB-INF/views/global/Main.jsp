@@ -2,8 +2,8 @@
 <script src="${js}/global.js"></script>
 <script type="text/javascript">
 	$(function() {
-		Global.init();
-/* 		$("#header").load("${context}/global/Main.do?page=header"); 
+/*		Global.init();
+ 		$("#header").load("${context}/global/Main.do?page=header"); 
 		$("#box").load("${context}/global/Main.do?page=default"); */
 	});
 </script>

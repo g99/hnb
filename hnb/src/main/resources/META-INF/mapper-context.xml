@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <mappers>
+    <mapper resource="com/hnb/mapper/AdminMapper.xml"/>
+    <mapper resource="com/hnb/mapper/ArticleMapper.xml"/>
+    <mapper resource="com/hnb/mapper/MemberMapper.xml"/>
+    <mapper resource="com/hnb/mapper/MovieMapper.xml"/>
+    <mapper resource="com/hnb/mapper/ScheduleMapper.xml"/>
+    <mapper resource="com/hnb/mapper/TicketMapper.xml"/>
+  </mappers>
+</configuration>
