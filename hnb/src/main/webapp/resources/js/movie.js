@@ -8,40 +8,23 @@
 						var rank = '<div id="test"><h2 style="color: white; padding-top: 10;">무비차트</h2></div>';
 						$.each(data, function(index, value) {
 							rank += '<div class="chart_rank" id="chart_rank'+index+'"><div class="chart_ranking chart_font_17 chart_bold">'+'NO.'+(index+1)+'</div>'
-									+'<img id='+this.filmNumber+' src="../images/'+this.filmNumber+'.jpg" alt="" width="250" height="350"><div class="chart_desc chart_bold">'+this.filmName+'</div></div>';
+									+'<img id='+this.filmNumber+' src="'+project+'/resources/images/'+this.filmNumber+'.jpg" alt="" width="250" height="350"><div class="chart_desc chart_bold">'+this.filmName+'</div></div>';
 							arr.push(this.filmNumber);
 						});
 										
 					$('#movie_wrap').empty().append(rank);
 					$.each(data, function(i, val) {
 						$('#'+arr[i]).click(function() {
-							
-								$.ajax(project + '/movie/Movie.do?page=movie_name', {
-									data : 	{
-										filmNumber :arr[i],
-									},
-									dataType : 'json',
-									success : function(data) {
-									
-										$('#movie_wrap').empty();
-									 	Movie.movieName(project,data);
-									},
-									error : function(xhr, status, msg) {
-										alert('에러발생 : '+ status+', 내용 : '+msg );
-									}
-								});
-							
-					});
-
+							Movie.movieName(project, arr[i]);
+						});
 					});
 					});
-
 				},
-				movieName : function(project,data) {
-		 			$.getJSON(project + '/movie/movie_name'+data.filmNumber, 
+				movieName : function(project,filmNumber) {
+		 			$.getJSON(project + '/movie/movie_name/'+filmNumber, 
 							function(data) {
 								var movieInfom = '<h1>무비페이지</h1>'
-									+'<div id="movie_info"><div id="movie_poster"><img id="movie_float" src="../images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
+									+'<div id="movie_info"><div id="movie_poster"><img id="movie_float" src="'+project+'/resources/images/'+data.filmNumber+'.jpg;" alt="" width="250" height="350" /></div>'
 									+'<h2>'+data.filmName+'</h2>'
 									+'<table id="movie_tab" style= "border : 1px solid black"><tr><th style="color: grey; font-size: 18px">예매율</th><td>10.5%</td></tr><tr><th>감독</th>'
 									+'<td>'+data.director+'</td><tr><th>배우</th><td>'+data.actor+'</td></tr>'
@@ -49,14 +32,23 @@
 									+'<td>'+data.releaseDate+' <a href="../ticket/ticket.html"><input type="button" value="바로 예매" class="movie_font_20 movie_bold movie_bg_color_green movie_txt_color_white "></a></td></tr></table>'
 									+'<div class="movie_margin_auto"></div><br /><div class="movie_infonavi movie_font_20"><ul><li><a href="#movie_story">영화스토리</a></li>'
 									+'<li><a href="#movie_tra">트레일러</a></li><li><a href="#movie_cut">스틸컷</a></li><li><a href="#movie_review">리뷰</a></li></ul></div></div>'
-									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10"><img src="../images/'+data.story+'.JPG;" alt="" /></div></div>'
+									+'<div id="movie_story" class="movie_story_lay movie_margin_b20"><h2>영화 스토리</h2><div class="movie_story movie_margin_a10"><img src="'+project+'/resources/images/'+data.story+'.JPG;" alt="" /></div></div>'
 									+'<div id="movie_cut" class="movie_cut_lay movie_margin_b20"><h2>스틸컷<input type="button" value="스틸컷 더보기" id="cutmore" class="movie_bold movie_bg_color_green movie_txt_color_white "></h2>'
-									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="../images/'+data.filmNumber+'1.jpg;" alt="" width="250" height="161" /></a></div>'
-									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="../images/'+data.filmNumber+'2.jpg;" alt="" width="250" height="161" /></a></div>'
-									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="../images/'+data.filmNumber+'3.jpg;" alt="" width="250" height="161" /></a></div>'
-									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="../images/'+data.filmNumber+'4.jpg;" alt="" width="250" height="161" /></a></div></div>'
+									+'<div class="movie_cut movie_margin_l30  movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'1.jpg;" alt="" width="200" height="161" /></a></div>'
+									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'2.jpg;" alt="" width="200" height="161" /></a></div>'
+									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'3.jpg;" alt="" width="200" height="161" /></a></div>'
+									+'<div class="movie_cut movie_margin_l20 movie_float"><a href="#"><img src="'+project+'/resources/images/'+data.filmNumber+'4.jpg;" alt="" width="200" height="161" /></a></div></div>'
+									+'<div id="movie_tra" class="movie_tra_lay movie_margin_b20 "><h2>트레일러</h2>';
 									
-								$('#movie_wrap').html(movieInfom).append(Movie.trailer(project,data));
+								$.each(data.trailer.split("/"), function(index, value) {
+									movieInfom += '<div class="movie_tra margin_l20 movie_float"><iframe width="270" height="200" src="https://www.youtube.com/embed/'+value+'" frameborder="0" allowfullscreen></iframe></div>';
+								})
+									movieInfom += '</div><div id="movie_cut" class="movie_cut_lay movie_margin_b20">'
+										+'<div id="movie_review" class="movie_review_lay"><h2>리뷰</h2></div>'
+										+'<div class="movie_infonavi movie_font_20"><ul><li><a href="#movie_info">영화상세</a></li><li><a href="#movie_story">영화스토리</a></li>'
+										+'<li><a href="#movie_tra">트레일러</a></li><li><a href="#movie_cut">스틸컷</a></li></ul></div></div>';
+								
+								$('#movie_wrap').html(movieInfom);
 								$('#movie_info').css('border', '1px solid black').css('width', '95%').css('height', '500px').css('margin','20px');
 								$('#movie_poster').css('float', 'left').css('border', '1px solid black').css('width', '250px').css('height', '350px').css('margin', 'auto').css('margin-right','30px');
 								$('#movie_float').css('float', 'left');

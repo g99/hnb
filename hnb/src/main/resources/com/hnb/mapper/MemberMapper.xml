@@ -3,10 +3,44 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hnb.mapper.MemberMapper">
-    <select id="getOne" resultType="com.hnb.member.MemberVO">
-            SELECT * FROM user WHERE name = #{name}  
-    </select>
-    <select id="getUser" resultType="com.hnb.member.MemberVO">
-            SELECT * FROM user
-    </select>
+	<insert id="insert" parameterType="com.hnb.member.MemberVO">
+		INSERT INTO MEMBER VALUES
+		(#{id}, #{password}, #{name}, #{birth}, #{gender}, #{phone}, #{addr}, #{email}, sysdate)
+	</insert>
+	
+	<select id="selectAll" resultType="com.hnb.member.MemberVO">
+		SELECT
+		  ID AS id,
+		  PASSWORD AS password,
+		  NAME AS name,
+		  BIRTH AS birth,
+		  ADDR AS addr,
+		  GENDER AS gender,
+		  EMAIL AS email,
+		  PHONE AS phone,
+		  REGDATE AS regdate
+		FROM MEMBER
+	</select>  
+	
+	<select id="selectOneBy" parameterType="string" resultType="com.hnb.member.MemberVO">
+		SELECT
+		  ID AS id,
+		  PASSWORD AS password,
+		  NAME AS name,
+		  BIRTH AS birth,
+		  ADDR AS addr,
+		  GENDER AS gender,
+		  EMAIL AS email,
+		  PHONE AS phone,
+		  REGDATE AS regdate
+		FROM MEMBER WEHRE ID = #{id}
+	</select>
+	
+	<select id="count">
+		SELECT COUNT(*) AS COUNT FROM MEMBER
+	</select>
+	
+	<update id="update" parameterType="com.hnb.member.MemberVO">
+		UPDATE MEMBER SET PASSWORD = #{password}, ADDR = #{addr}, PHONE = #{phone}, EMAIL = #{email} WHERE ID = #{id}
+	</update>
 </mapper>

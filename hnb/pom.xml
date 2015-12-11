@@ -55,7 +55,7 @@
 			<artifactId>jackson-mapper-asl</artifactId>
 			<version>1.7.1</version>
 		</dependency>
-		
+
 		<!-- DB -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
@@ -79,20 +79,20 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		
+
 		<!-- 파일업로드 -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		
+
 		<!-- tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
 			<version>2.2.2</version>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-servlet</artifactId>
@@ -159,6 +159,13 @@
 		</dependency>
 
 		<!-- Logging -->
+		<!-- 로그 기록 sql에서 -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+			<version>0.2.7</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
