@@ -3,12 +3,13 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-  <mappers>
-    <mapper resource="com/hnb/mapper/AdminMapper.xml"/>
-    <mapper resource="com/hnb/mapper/ArticleMapper.xml"/>
-    <mapper resource="com/hnb/mapper/MemberMapper.xml"/>
-    <mapper resource="com/hnb/mapper/MovieMapper.xml"/>
-    <mapper resource="com/hnb/mapper/ScheduleMapper.xml"/>
-    <mapper resource="com/hnb/mapper/TicketMapper.xml"/>
-  </mappers>
+<!--   <typeAliases>
+  	<typeAlias type="com.hnb.movie.MovieVO" alias="Movie"/>
+  	<typeAlias type="com.hnb.movie.MemberVO" alias="Member"/>
+  	<typeAlias type="com.hnb.movie.AdminVO" alias="Admin"/>
+  	<typeAlias type="com.hnb.movie.TicketVO" alias="Ticket"/>
+  	<typeAlias type="com.hnb.movie.ScheduleVO" alias="Schedule"/>
+  	<typeAlias type="com.hnb.movie.ArticleVO" alias="Article"/>
+  </typeAliases> -->
+ 
 </configuration>

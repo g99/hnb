@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 	
-	<!-- sqlSessionFactoryBean sqlSessionFactory = new sqlSessionFactoryBean();
-		 sqlSessionTemplate sqlSession = new sqlSessionTemplate(sqlSessionFactory); -->
+	<!-- config/jdbc.properties의 연결정보를 가져옴 -->
+	<context:property-placeholder location="classpath:config/jdbc.properties" />
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:config/jdbc.properties</value>
+		</property>
+	</bean>
+	<!-- jdbc.properties의 정보를 적용함 -->
+	<bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	<!-- 위 dataSource를 Spied로 변경하고 아래 내용을 추가함으로써  -->
+	<!-- mybatis 영역에서도 logger를 사용 할 수 있다. -->
+  	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+  		<constructor-arg ref="dataSourceSpied" />
+  		<property name="logFormatter">
+  			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+  				<property name="loggingType" value="MULTI_LINE"/>
+  				<property name="sqlPrefix" value="SQL        :"/>
+  			</bean>
+  		</property>
+  	</bean>
+	<!-- sqlSessionFactoryBean sqlSessionFactory = new sqlSessionFactoryBean(); 
+		sqlSessionTemplate sqlSession = new sqlSessionTemplate(sqlSessionFactory); -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	  <property name="dataSource" ref="dataSource" />
-	  <property name="mapperLocations" value="classpath:META-INF/mapper-context.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:com/hnb/mapper/*.xml" />
 	</bean>
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-	  <constructor-arg index="0" ref="sqlSessionFactory" />
+		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
 </beans>
 

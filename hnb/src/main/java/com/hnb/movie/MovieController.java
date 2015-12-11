@@ -7,10 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -41,14 +39,14 @@ public class MovieController {
 		return model;
 	}
 	
-	@RequestMapping("/movie_name/{movieName}")
+	@RequestMapping("/movie_name/{filmNumber}")
 	// 객체 하나를 전송할때는 @ResponseBody를 활용하는 것이 편리
 	public @ResponseBody MovieVO memberName(
-			@PathVariable("movieName") String name
+			@PathVariable("filmNumber") String filmNumber
 			) {
 		logger.info("MovieController-memberList() 진입");
-		logger.info("영화 아이디 {}",name);
-		movie = service.searchByName(name);
+		logger.info("영화 아이디 {}",filmNumber);
+		movie = service.searchByName(filmNumber);
 		logger.info("영화제목 : {}", movie.getFilmNumber());
 		
 		return movie;
@@ -88,12 +86,11 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/movie_chart")
-	@ModelAttribute
-	public Model movieChart(Model model) {
-		logger.info("MovieController-movieChart() 진입");
+	public @ResponseBody List<MovieVO> movieChart(Model model) {
+		logger.info("movieChart()");
 		List<MovieVO> list = service.getList();
 		logger.info("영화 리스트 {}", list);
-		model.addAttribute("list", list);
-		return model;
+		/*model.addAttribute("list", list);*/
+		return list;
 	}
 }

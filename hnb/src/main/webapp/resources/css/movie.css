@@ -68,9 +68,10 @@
 			width: 95%;
 			height: 320px;}
 .movie_tra{border : 1px solid black;
-			width : 350px;
+			margin-left : 20px;
+			width : 270px;
 			height : 200px;}
-.movie_tra_name{width:340px;
+.movie_tra_name{width:270px;
 			border : 1px solid white;
 			padding : 5px;
 			text-align: center;}
@@ -80,7 +81,7 @@
 			width: 95%;
 			height: 300px;}
 .movie_cut{border : 1px solid black;
-			width : 250px;
+			width : 200px;
 			height : 161px;}
 			
 .movie_review_lay{border : 1px solid black;
