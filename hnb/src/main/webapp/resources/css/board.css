@@ -1,0 +1,29 @@
+
+#boardList a:link {
+  color: #393c39;text-decoration:none; color:white;
+}
+
+#boardList a:visited {
+  color: #393c39;text-decoration:none;color:white;
+}
+
+#boardList a:hover {
+  color: #42619c;text-decoration:none;color:white;
+  font-size:15pt;
+}
+
+#boardList form {
+  margin-bottom:0; margin-top:0; padding:0;
+}
+
+#boardList table
+  font-size:12pt;
+}
+
+#boardList input,#boardList textarea,#boardList form {
+  font-size:12pt; font-family:"굴림"; line-height:12pt; color:white;
+}
+
+#boardList body, #boardList td, #boardList select {
+  font-family:"굴림"; font-size:12pt; line-height: 17pt; color:white;
+}

@@ -65,6 +65,7 @@
             <!-- /.navbar-collapse -->
     </nav>
 <script src="${js}/global.js"></script>  
+<script src="${js}/board.js"></script>  
 <script src="${js}/movie.js"></script>  
 <script src="${js}/member.js"></script>  
 <script src="${js}/ticket.js"></script>  
@@ -122,8 +123,9 @@
 		});
 		
 		$("#event_btn").click(function() {
+			console.log("이벤트 버튼 클릭")
 			history.pushState("Event_home","","");
-			$("#box").load();
+			$(".mainView").load("${context}/event/boardList");
 		});
 		
 		/* 로그인 버튼 */

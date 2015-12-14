@@ -1,15 +1,12 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration
-  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-config.dtd">
-<configuration>
-<!--   <typeAliases>
-  	<typeAlias type="com.hnb.movie.MovieVO" alias="Movie"/>
-  	<typeAlias type="com.hnb.movie.MemberVO" alias="Member"/>
-  	<typeAlias type="com.hnb.movie.AdminVO" alias="Admin"/>
-  	<typeAlias type="com.hnb.movie.TicketVO" alias="Ticket"/>
-  	<typeAlias type="com.hnb.movie.ScheduleVO" alias="Schedule"/>
-  	<typeAlias type="com.hnb.movie.ArticleVO" alias="Article"/>
-  </typeAliases> -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
  
+<!--  꼭 순서대로 -->    
+<configuration>
+    <!-- 알리아스 설정 -->
+    <typeAliases>
+        <typeAlias alias="Member" type="com.hnb.member.MemberVO"/>
+        <typeAlias alias="movie" type="com.hnb.movie.MovieVO"/>
+    </typeAliases>
 </configuration>

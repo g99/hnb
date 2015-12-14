@@ -2,6 +2,8 @@ package com.hnb.member;
 
 import java.util.List;
 
+import com.hnb.global.Command;
+
 public interface MemberService {
 	/**
 	 * DML -> pstmt.executeUpdate()
@@ -24,5 +26,5 @@ public interface MemberService {
 	// 키워드 검색(중복 허용)
 	public List<MemberVO> searchBySearchword(String domain,String searchword);
 	// 전체 회원 목록
-	public List<MemberVO> getList();
+	public List<MemberVO> getList(Command command);
 }

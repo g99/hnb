@@ -3,12 +3,13 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hnb.mapper.MemberMapper">
+	<cache/>
 	<insert id="insert" parameterType="com.hnb.member.MemberVO">
 		INSERT INTO MEMBER VALUES
 		(#{id}, #{password}, #{name}, #{birth}, #{gender}, #{phone}, #{addr}, #{email}, sysdate)
 	</insert>
 	
-	<select id="selectAll" resultType="com.hnb.member.MemberVO">
+	<select id="selectAll" parameterType="com.hnb.global.Command" resultType="com.hnb.member.MemberVO">
 		SELECT
 		  ID AS id,
 		  PASSWORD AS password,
@@ -19,7 +20,8 @@
 		  EMAIL AS email,
 		  PHONE AS phone,
 		  REGDATE AS regdate
-		FROM MEMBER
+		FROM (SELECT ROWNUM AS seq, m.* FROM MEMBER m) <!-- 현재 테이블에는 seq가 없으므로 번호를 부여함 -->
+		WHERE seq BETWEEN #{start} AND #{end}
 	</select>  
 	
 	<select id="selectOneBy" parameterType="string" resultType="com.hnb.member.MemberVO">
@@ -36,11 +38,29 @@
 		FROM MEMBER WEHRE ID = #{id}
 	</select>
 	
-	<select id="count">
+	<select id="selectSomeBy" parameterType="com.hnb.global.Command" resultType="com.hnb.member.MemberVO">
+		SELECT
+		  ID AS id,
+		  PASSWORD AS password,
+		  NAME AS name,
+		  BIRTH AS birth,
+		  ADDR AS addr,
+		  GENDER AS gender,
+		  EMAIL AS email,
+		  PHONE AS phone,
+		  REGDATE AS regdate
+		FROM MEMBER WEHRE #{column} = #{id}
+	</select>
+	
+	<select id="count" resultType="int">
 		SELECT COUNT(*) AS COUNT FROM MEMBER
 	</select>
 	
 	<update id="update" parameterType="com.hnb.member.MemberVO">
 		UPDATE MEMBER SET PASSWORD = #{password}, ADDR = #{addr}, PHONE = #{phone}, EMAIL = #{email} WHERE ID = #{id}
 	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM MEMBER WHERE ID = #{id}
+	</delete>
 </mapper>
