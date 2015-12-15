@@ -125,7 +125,7 @@
 		$("#event_btn").click(function() {
 			console.log("이벤트 버튼 클릭")
 			history.pushState("Event_home","","");
-			$(".mainView").load("${context}/event/boardList");
+			location.href = "${context}/event/boardList/1";
 		});
 		
 		/* 로그인 버튼 */

@@ -62,10 +62,10 @@
 		<TD WIDTH=320 ALIGN=CENTER>
 		
 			<c:if test="${startPage ne 1}">
-				<a href="${context}/event/boardList/1">
+				<a href="${context}/event/memberSearch/1?column=${column}&keyword=${keyword}">
 					<IMG SRC="${img}/btn_bf_block.gif">&nbsp;
 				</a>
-				<a href="${context}/event/boardList/${startPage-GROUPSIZE}">
+				<a href="${context}/event/memberSearch/${startPage-GROUPSIZE}?column=${column}&keyword=${keyword}">
 					<IMG SRC="${img}/btn_bf_page.gif">&nbsp;
 				</a>
 			</c:if>   
@@ -75,15 +75,15 @@
 						<font style="color:red;">${status.index}</font>
 					</c:when>
 					<c:otherwise>
-						<a href="${context}/event/boardList/${status.index}">${status.index}</a>
+						<a href="${context}/event/memberSearch/${status.index}?column=${column}&keyword=${keyword}">${status.index}</a>
 					</c:otherwise>
 				</c:choose>
-			</c:forEach>
+			</c:forEach>	
 			<c:if test="${lastPage ne totPage}">
-				<a href="${context}/event/boardList/${startPage+GROUPSIZE}">
+				<a href="${context}/event/memberSearch/${startPage+GROUPSIZE}?column=${column}&keyword=${keyword}">
 					<IMG SRC="${img}/btn_nxt_page.gif">&nbsp; 
 				</a>
-				<a href="${context}/event/boardList/${totPage - ((totPage-1) % GROUPSIZE)}">
+				<a href="${context}/event/memberSearch/${totPage - ((totPage-1) % GROUPSIZE)}?column=${column}&keyword=${keyword}">
 					<IMG SRC="${img}/btn_nxt_block.gif">&nbsp; 
 				</a>
 			</c:if>

@@ -23,6 +23,7 @@
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
 	<!-- 타일즈를 사용하게되면 없애야 함  -->
+	<!-- SOAP 방식 리턴값 결정  -->
 	<!-- <beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />

@@ -35,7 +35,7 @@
 		  EMAIL AS email,
 		  PHONE AS phone,
 		  REGDATE AS regdate
-		FROM MEMBER WEHRE ID = #{id}
+		FROM MEMBER WHERE ID = #{id}
 	</select>
 	
 	<select id="selectSomeBy" parameterType="com.hnb.global.Command" resultType="com.hnb.member.MemberVO">
@@ -49,11 +49,23 @@
 		  EMAIL AS email,
 		  PHONE AS phone,
 		  REGDATE AS regdate
-		FROM MEMBER WEHRE #{column} = #{id}
+		FROM (SELECT ROWNUM AS seq, m.* FROM (
+			SELECT * FROM MEMBER
+			WHERE ${column} LIKE '%' || #{keyword} || '%' <!-- 이름검색시 '%홍%' -->
+		) m)
+		WHERE seq BETWEEN #{start} AND #{end}
+
 	</select>
-	
+	<!-- 칼럼이름은 jsp의 내용을 가져와야 한다. -->
 	<select id="count" resultType="int">
 		SELECT COUNT(*) AS COUNT FROM MEMBER
+	</select>
+	
+	<select id="countSomeBy" parameterType="com.hnb.global.Command" resultType="int">
+		SELECT COUNT(*) AS COUNT FROM MEMBER
+		WHERE ${column} LIKE '%' || #{keyword} || '%' <!-- 이름검색시 '%홍%' -->
+		
+
 	</select>
 	
 	<update id="update" parameterType="com.hnb.member.MemberVO">

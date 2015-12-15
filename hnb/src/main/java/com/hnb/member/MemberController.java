@@ -1,6 +1,9 @@
 package com.hnb.member;
 
 import javax.jws.WebParam.Mode;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+
+import com.hnb.movie.MovieVO;
 @Controller
+@SessionAttributes("user") /* 세션명을 user로 명명 */
 @RequestMapping("/member")
 public class MemberController {
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
@@ -65,36 +75,30 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/logout")
-	public Model logout(Model model) {
+	public String logout(Model model, SessionStatus status) {
 		logger.info("Member : 로그아웃 진입");
-	/*	session.invalidate();*/
+	/*	session.invalidate(); 와 같은의미*/
+		status.setComplete();
 		model.addAttribute("result", "success");
-		return model;
+		return "global/default.tiles";
 	}
-	
+	/* SessionStatus를 이용해서 세션을 생성 */
 	@RequestMapping("/login")
-	public Model login(Model model, String id, String password) {
+	public @ResponseBody MemberVO login(
+			Model model, String id, @RequestParam("pw")String password
+			) {
 		logger.info("Member : 로그인 진입");
 		logger.info("유저아이디 : {}", id);
 		logger.info("유저비  번 : {}", password);
 		member = service.login(id, password);
 		// 로그인 실패시
 		if (member == null) {
-			model.addAttribute("result", "fail");
 		} else {
 		// 로그인 성공시
-			/*session = request.getSession();
-			session.setAttribute("user",member);*/
-			model.addAttribute("result", "success");
-			model.addAttribute("id", id);
-			model.addAttribute("pw", password);
-			if (id.equals("choa")) {
-				model.addAttribute("admin", "yes");
-			} else {
-				model.addAttribute("admin", "no");
-			}
+			logger.info("로그인 성공!!!");
+			model.addAttribute("user", "member");
 		}
-		return model;
+		return member;
 	}
 	
 	@RequestMapping("/check_Overlap")
@@ -111,6 +115,9 @@ public class MemberController {
 	
 	@RequestMapping("/mypage")
 	public String mypage() {
-		return "member/mypage";
+		logger.info("mypage() 진입");
+		String page = "member/mypage.tiles";
+		logger.info("페이지 : {}", page);
+		return page;
 	}
 }

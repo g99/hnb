@@ -8,13 +8,13 @@ public class Command implements Orderable {
 		this.column = column;
 		this.keyword = keyword;
 		this.pageNO = Integer.parseInt(pageNo);
-		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE;
+		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE+1;
 		this.end = (Integer.parseInt(pageNo))*PAGESIZE;
 	}
 	
 	public Command(String pageNo) {
 		this.pageNO = Integer.parseInt(pageNo);
-		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE;
+		this.start = (Integer.parseInt(pageNo)-1)*PAGESIZE+1;
 		this.end = (Integer.parseInt(pageNo))*PAGESIZE;
 	}
 

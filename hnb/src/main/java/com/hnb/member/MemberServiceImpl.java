@@ -69,14 +69,19 @@ public class MemberServiceImpl  implements MemberService{
 	}
 	// 검색어로 검색
 	@Override
-	public List<MemberVO> searchBySearchword(String domain,String searchword) {
+	public List<MemberVO> searchByKeyword(Command command) {
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
-		return mapper.selectSomeBy(domain, searchword);
+		return mapper.selectSomeBy(command);
 	}
 	// 전체 회원목록 
 	@Override
 	public List<MemberVO> getList(Command command) {
 		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
 		return mapper.selectAll(command);
+	}
+	@Override
+	public int countByKeyword(Command command) {
+		MemberMapper mapper = sqlSession.getMapper(MemberMapper.class);
+		return mapper.countSomeBy(command);
 	}
 }

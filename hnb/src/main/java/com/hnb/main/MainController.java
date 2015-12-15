@@ -34,4 +34,12 @@ public class MainController {
 		return "global/default.tiles"; // dispatcher와 response.getWriter().print()를 포함
 					   // home은 경로를 의미함
 	}
+	
+/*	@RequestMapping("/login")
+	public String login(Model model) {  // 모델은 request와 response를 모두 포함
+		logger.info("login() 진입");
+		
+		return "global/default.header"; // dispatcher와 response.getWriter().print()를 포함
+		// home은 경로를 의미함
+	}*/
 }

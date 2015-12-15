@@ -24,7 +24,8 @@ public interface MemberService {
 	// 아이디 검색
 	public MemberVO searchById(String id);
 	// 키워드 검색(중복 허용)
-	public List<MemberVO> searchBySearchword(String domain,String searchword);
+	public List<MemberVO> searchByKeyword(Command command);
 	// 전체 회원 목록
 	public List<MemberVO> getList(Command command);
+	public int countByKeyword(Command command);
 }
